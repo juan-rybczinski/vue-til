@@ -1,8 +1,11 @@
 import axios from 'axios';
 
+const instance = axios.create({
+  baseURL: process.env.VUE_APP_API_URL,
+});
+
 const registerUser = user => {
-  const url = 'http://localhost:3000';
-  return axios.post(`${url}/signup`, user);
+  return instance.post('signup', user);
 };
 
 export { registerUser };
