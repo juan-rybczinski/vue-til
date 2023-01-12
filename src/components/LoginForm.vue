@@ -8,22 +8,15 @@
       <label for="password">pw: </label>
       <input id="password" type="password" v-model="password" />
     </div>
-    <div>
-      <label for="nickname">nickname: </label>
-      <input id="nickname" type="text" v-model="nickname" />
-    </div>
-    <button
-      :disabled="!isUsernameValid || !password || !nickname"
-      type="submit"
-    >
-      register
+    <button :disabled="!isUsernameValid || !password" type="submt">
+      Login
     </button>
     <p>{{ logMessage }}</p>
   </form>
 </template>
 
 <script>
-import { registerUser } from '@/api/index';
+import { loginUser } from '@/api/index';
 import { validateEmail } from '@/utils/validation';
 
 export default {
@@ -31,7 +24,6 @@ export default {
     return {
       username: '',
       password: '',
-      nickname: '',
       logMessage: '',
     };
   },
@@ -45,16 +37,19 @@ export default {
       const user = {
         username: this.username,
         password: this.password,
-        nickname: this.nickname,
       };
-      const { data } = await registerUser(user);
-      this.logMessage = `${data.nickname}님이 가입하셨습니다!`;
-      this.initForm();
+      try {
+        const { data } = await loginUser(user);
+        this.logMessage = `${data.user.nickname}님 환영합니다!`;
+      } catch (error) {
+        this.logMessage = error.response.data;
+      } finally {
+        this.initForm();
+      }
     },
     initForm() {
       this.username = '';
       this.password = '';
-      this.nickname = '';
     },
   },
 };
