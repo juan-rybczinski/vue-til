@@ -1,8 +1,14 @@
 import axios from 'axios';
+import { setInterceptor } from '@/api/common/interceptors';
 
-const instance = axios.create({
-  baseURL: process.env.VUE_APP_API_URL,
-});
+const createInstance = () => {
+  const instance = axios.create({
+    baseURL: process.env.VUE_APP_API_URL,
+  });
+  return setInterceptor(instance);
+};
+
+const instance = createInstance();
 
 const registerUser = user => {
   return instance.post('signup', user);
