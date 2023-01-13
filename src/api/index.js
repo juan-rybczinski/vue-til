@@ -18,4 +18,8 @@ const loginUser = user => {
   return instance.post('login', user);
 };
 
-export { registerUser, loginUser };
+const fetchPosts = () => {
+  return instance.get('posts');
+};
+
+export { registerUser, loginUser, fetchPosts };
