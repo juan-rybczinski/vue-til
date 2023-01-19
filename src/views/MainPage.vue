@@ -5,6 +5,9 @@
     <ul v-else>
       <post-list-item v-for="post in posts" :key="post._id" :post="post" />
     </ul>
+    <router-link to="/add">
+      <i class="ion-md-add"></i>
+    </router-link>
   </div>
 </template>
 
