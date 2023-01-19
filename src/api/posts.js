@@ -8,4 +8,8 @@ const createPost = post => {
   return posts.post('/', post);
 };
 
-export { fetchPosts, createPost };
+const deletePost = id => {
+  return posts.delete(id);
+};
+
+export { fetchPosts, createPost, deletePost };

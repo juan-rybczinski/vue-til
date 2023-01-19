@@ -3,7 +3,12 @@
     <h1>Today I Learned</h1>
     <loading-spinner v-if="isLoading" />
     <ul v-else>
-      <post-list-item v-for="post in posts" :key="post._id" :post="post" />
+      <post-list-item
+        v-for="post in posts"
+        :key="post._id"
+        :post="post"
+        @delete="getPosts"
+      />
     </ul>
     <router-link to="/add">
       <i class="ion-md-add"></i>
