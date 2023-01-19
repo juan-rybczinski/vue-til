@@ -4,7 +4,7 @@
     <div>{{ post.contents }}</div>
     <div>
       {{ post.createdAt }}
-      <i class="ion-md-create"></i>
+      <i class="ion-md-create" @click="routeEditPage"></i>
       <i class="ion-md-trash" @click="deleteItem"></i>
     </div>
   </li>
@@ -26,6 +26,9 @@ export default {
         await deletePost(this.post._id);
         this.$emit('delete');
       }
+    },
+    routeEditPage() {
+      this.$router.push(`/edit/${this.post._id}`);
     },
   },
 };
