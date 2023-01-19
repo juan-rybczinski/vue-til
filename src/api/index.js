@@ -5,25 +5,15 @@ const createInstance = () => {
   const instance = axios.create({
     baseURL: process.env.VUE_APP_API_URL,
   });
+  return instance;
+};
+
+const createInstanceWithAuth = url => {
+  const instance = axios.create({
+    baseURL: `${process.env.VUE_APP_API_URL}${url}`,
+  });
   return setInterceptor(instance);
 };
 
-const instance = createInstance();
-
-const registerUser = user => {
-  return instance.post('signup', user);
-};
-
-const loginUser = user => {
-  return instance.post('login', user);
-};
-
-const fetchPosts = () => {
-  return instance.get('posts');
-};
-
-const createPost = post => {
-  return instance.post('posts', post);
-};
-
-export { registerUser, loginUser, fetchPosts, createPost };
+export const instance = createInstance();
+export const posts = createInstanceWithAuth('posts');

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { createPost } from '@/api/index';
+import { createPost } from '@/api/posts';
 
 export default {
   data() {
@@ -44,6 +44,7 @@ export default {
         });
         console.log(response);
       } catch (error) {
+        console.error(error);
         this.logMessage = error.response.data.message;
       }
     },
