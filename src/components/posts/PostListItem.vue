@@ -3,7 +3,7 @@
     <div>{{ post.title }}</div>
     <div>{{ post.contents }}</div>
     <div>
-      {{ post.createdAt }}
+      {{ post.createdAt | formatDate }}
       <i class="ion-md-create" @click="routeEditPage"></i>
       <i class="ion-md-trash" @click="deleteItem"></i>
     </div>
